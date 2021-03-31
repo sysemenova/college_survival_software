@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'tasklist.dart';
 import 'getTaskList.dart';
 
+// Starts the app
 void main() {
   runApp(MyApp());
 }
 
+// Root of the application
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,6 +35,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return TaskListWidget("Home", getTaskList());
+    return TaskListWidget("Home", getDummyTaskList());
   }
 }
