@@ -10,6 +10,13 @@ class HouseholdTask {
   void changeDone() => doneCheck ? doneCheck = false : doneCheck = true;
 }
 
+class HouseholdTaskList {
+  String name;
+  List tasks;
+
+  HouseholdTaskList(this.name, this.tasks);
+}
+
 
 class TaskWidget extends StatefulWidget {
   HouseholdTask task;

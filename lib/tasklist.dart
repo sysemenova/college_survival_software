@@ -1,31 +1,39 @@
 import 'package:flutter/material.dart';
 import 'householdtask.dart';
 
-class TaskList extends StatefulWidget {
-  var tasks = <HouseholdTask>[];
-  TaskList(this.tasks);
+// ignore: must_be_immutable
+class TaskListWidget extends StatefulWidget {
+  var tasks = [];
+  String name;
+  TaskListWidget(this.name, this.tasks);
 
   @override
-  _TaskListState createState() => _TaskListState(tasks);
+  _TaskListState createState() => _TaskListState(name, tasks);
 }
 
-class _TaskListState extends State<TaskList> {
-  var tasks = <HouseholdTask>[];
-  _TaskListState(this.tasks);
+class _TaskListState extends State<TaskListWidget> {
+  var tasks = [];
+  String name;
+  _TaskListState(this.name, this.tasks);
 
   @override
   Widget build(BuildContext context) {
-
-    return ListView.builder(
-      itemCount: tasks.length,
-      padding: EdgeInsets.all(17),
-      itemBuilder: (context, i) {
-        return buildRow(tasks[i]);
-      }
-    );
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(this.name),
+      ),
+      body: ListView.builder(
+          itemCount: tasks.length,
+          padding: EdgeInsets.all(17),
+          itemBuilder: (context, i) {
+            var cur = tasks[i];
+            return cur is HouseholdTask
+                ? buildRowTask(cur)
+                : buildRowList(cur);
+          }));
   }
 
-  Widget buildRow (HouseholdTask task) {
+  Widget buildRowTask (HouseholdTask task) {
     return ListTile (
       title: Text(task.name),
       // How the hell does padding work lmao
@@ -35,10 +43,26 @@ class _TaskListState extends State<TaskList> {
     );
   }
 
-  void pushTask(task) {
+  void pushTask(HouseholdTask task) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => TaskWidget(task))
+    );
+  }
+
+  Widget buildRowList (HouseholdTaskList tasklistie) {
+    return ListTile(
+      title: Text(tasklistie.name, style: TextStyle(color: Colors.blue)),
+      onTap: () {
+        pushList(tasklistie);
+      }
+    );
+  }
+
+  void pushList(HouseholdTaskList taskies) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => TaskListWidget(taskies.name, taskies.tasks))
     );
   }
 }
