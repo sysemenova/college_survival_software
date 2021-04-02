@@ -35,6 +35,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return TaskListWidget("Home", getDummyTaskList());
+    return TaskListWidget("Home", getDummyTaskList(), false);
   }
 }

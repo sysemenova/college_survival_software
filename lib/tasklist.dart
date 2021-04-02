@@ -7,33 +7,62 @@ import 'householdtask.dart';
 class TaskListWidget extends StatefulWidget {
   var tasks = [];
   String name;
+  var showDone;
 
-  TaskListWidget(this.name, this.tasks);
+  TaskListWidget(this.name, this.tasks, this.showDone);
 
   @override
-  _TaskListState createState() => _TaskListState(name, tasks);
+  _TaskListState createState() => _TaskListState(name, tasks, showDone);
 }
 
 class _TaskListState extends State<TaskListWidget> {
-  var tasks = [];
+  List tasks = [];
   String name;
+  var showDone;
 
-  _TaskListState(this.name, this.tasks);
+  var hide = [], show = [], lists = [];
+
+  _TaskListState(this.name, this.tasks, this.showDone);
+
+  // Currently runs before each build
+  void updateTasks() {
+    hide = []; show = []; lists = [];
+    for (var i in tasks) {
+      if (i is HouseholdTask) {
+        if ((i.doneCheck && showDone) || (!i.doneCheck && !showDone))  {
+          show.add(i);
+        } else {
+          hide.add(i);
+        }
+      } else if (i is HouseholdTaskList) {
+        lists.add(i);
+      } else {
+        throw "Sad";
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    updateTasks();
     return Scaffold(
         appBar: AppBar(
           title: Text(this.name),
+          actions: [
+            IconButton(icon: Icon(Icons.check), onPressed: pushListHidden,)
+          ]
         ),
         body: ListView.builder(
-            itemCount: tasks.length,
+            itemCount: (show.length + lists.length),
             padding: EdgeInsets.all(17),
             itemBuilder: (context, i) {
-              var cur = tasks[i];
-              return cur is HouseholdTask
-                  ? buildRowTask(cur)
-                  : buildRowList(cur);
+              if (i < show.length) {
+                var cur = show[i];
+                return buildRowTask(cur);
+              } else {
+                var cur = lists[i - show.length];
+                return buildRowList(cur);
+              }
             }));
   }
 
@@ -64,17 +93,22 @@ class _TaskListState extends State<TaskListWidget> {
     return ListTile(
         title: Text(tasklistie.name, style: TextStyle(color: Colors.blue)),
         onTap: () {
-          pushList(tasklistie);
+          pushList(tasklistie, showDone);
         });
   }
 
-  void pushList(HouseholdTaskList taskies) {
+  void pushList(HouseholdTaskList taskies, bool showDoneNew) {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => TaskListWidget(taskies.name, taskies.tasks)
+            builder: (context) => TaskListWidget(taskies.name, taskies.tasks, showDoneNew)
         )
     ).then((value) => setState((){}));
+  }
+
+  void pushListHidden() {
+    HouseholdTaskList cur = new HouseholdTaskList("Done", hide);
+    pushList(cur, true);
   }
 
   FutureOr onGoBack (dynamic value) {
