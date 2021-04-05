@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 // Play around with font as you wish - eventually we'll figure out how to make
 // font and styling universal.
-final font = TextStyle(fontSize: 20);
+final fontDesc = TextStyle(fontSize: 20);
+final fontTask = TextStyle(fontSize: 30);
 
 /// This class holds data for the household tasks. It has no methods other than
 /// changeDone(), which flips the value of
@@ -64,7 +65,7 @@ class _TaskWidgetState extends State<TaskWidget> {
     var info = [task.why, task.how, task.doneCheck];
 
     return Scaffold(
-        appBar: AppBar(title: Text(task.name)),
+        appBar: AppBar(title: Text(task.name, style: fontTask)),
 
         // IMPORTANT: ListView is your friend because you can scroll in it,
         // but he's also somewhat a mystery. I only understand how to use the
@@ -91,7 +92,7 @@ class _TaskWidgetState extends State<TaskWidget> {
   /// CheckboxListTile. This can be played with.
   Widget buildRow(text) {
     return text is String
-        ? ListTile(title: Text(text))
+        ? ListTile(title: Text(text, style: fontDesc))
         : CheckboxListTile(
             title: Text("Done?"),
             value: text,
