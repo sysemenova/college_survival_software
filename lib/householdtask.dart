@@ -74,7 +74,7 @@ class _TaskWidgetState extends State<TaskWidget> {
         // notion document. Another constructor may be more useful.
         body: ListView.builder(
             // I do Not understand padding either.
-            padding: EdgeInsets.all(17),
+            padding: EdgeInsets.all(20),
             itemCount: info.length,
 
             // Anonymous function (context, i) {} where the {} has to return
