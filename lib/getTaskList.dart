@@ -31,6 +31,6 @@ List getDummyTaskList () {
         [
           HouseholdTask('Another task', 'You thought youd seen the last of me', 'not at all!', false),
           HouseholdTask('Yet another??', 'haha', 'Im here', false)
-        ])
+        ], color: Colors.red)
   ];
 }

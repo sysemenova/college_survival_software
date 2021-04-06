@@ -8,21 +8,23 @@ class TaskListWidget extends StatefulWidget {
   var tasks = [];
   String name;
   var showDone;
+  Color color;
 
-  TaskListWidget(this.name, this.tasks, this.showDone);
+  TaskListWidget(this.name, this.tasks, this.showDone, {this.color: Colors.blue});
 
   @override
-  _TaskListState createState() => _TaskListState(name, tasks, showDone);
+  _TaskListState createState() => _TaskListState(name, tasks, showDone, barcolor: color);
 }
 
 class _TaskListState extends State<TaskListWidget> {
   List tasks = [];
   String name;
   var showDone;
+  Color barcolor;
 
   var hide = [], show = [], lists = [];
 
-  _TaskListState(this.name, this.tasks, this.showDone);
+  _TaskListState(this.name, this.tasks, this.showDone, {this.barcolor: Colors.blue});
 
   // Currently runs before each build
   void updateTasks() {
@@ -48,6 +50,7 @@ class _TaskListState extends State<TaskListWidget> {
     return Scaffold(
         appBar: AppBar(
           title: Text(this.name),
+          backgroundColor: barcolor,
           actions: [
             IconButton(icon: Icon(Icons.check), onPressed: pushListHidden,)
           ]
@@ -91,7 +94,7 @@ class _TaskListState extends State<TaskListWidget> {
 
   Widget buildRowList(HouseholdTaskList tasklistie) {
     return ListTile(
-        title: Text(tasklistie.name, style: TextStyle(color: Colors.blue)),
+        title: Text(tasklistie.name, style: TextStyle(color: tasklistie.color)),
         onTap: () {
           pushList(tasklistie, showDone);
         });
@@ -101,13 +104,13 @@ class _TaskListState extends State<TaskListWidget> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => TaskListWidget(taskies.name, taskies.tasks, showDoneNew)
+            builder: (context) => TaskListWidget(taskies.name, taskies.tasks, showDoneNew, color: taskies.color)
         )
     ).then((value) => setState((){}));
   }
 
   void pushListHidden() {
-    HouseholdTaskList cur = new HouseholdTaskList("Done", hide);
+    HouseholdTaskList cur = new HouseholdTaskList("Done", hide, color: barcolor);
     pushList(cur, true);
   }
 

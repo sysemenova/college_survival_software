@@ -33,8 +33,9 @@ class HouseholdTask {
 class HouseholdTaskList {
   String name;
   List tasks;
+  Color color;
 
-  HouseholdTaskList(this.name, this.tasks);
+  HouseholdTaskList(this.name, this.tasks, {this.color: Colors.blue});
 }
 
 
