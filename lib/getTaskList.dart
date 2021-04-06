@@ -23,13 +23,13 @@ List getDummyTaskList () {
     HouseholdTask('Clean counters',
         'You should do this because clean counters make a bathroom much nicer.',
         'Get some paper towels and a spray spray and go ham', false),
-    HouseholdTask('Clean toilet', 'Dont want nasty poor, now do we',
+    HouseholdTask('Clean toilet', 'Dont want nasty bathroom, now do w?e',
         'Get yourself a scrubby scrubby and do it.', true),
     HouseholdTask('Replace sponge', 'You know how nasty those things get?',
-        'Go to the store and buy one you nasty piece of shit', false),
-    HouseholdTaskList('Test Name',
+        'Go to the store and buy a nice new clean one', false),
+    HouseholdTaskList('Task Folder',
         [
-          HouseholdTask('Another task', 'You thought youd seen the last of me', 'not at all bitch', false),
+          HouseholdTask('Another task', 'You thought youd seen the last of me', 'not at all!', false),
           HouseholdTask('Yet another??', 'haha', 'Im here', false)
         ])
   ];
