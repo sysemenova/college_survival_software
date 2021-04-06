@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:household_dorm_management/householdtask.dart';
 import 'tasklist.dart';
 import 'getTaskList.dart';
 
@@ -35,6 +36,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return TaskListWidget("Home", getDummyTaskList(), false);
+    return TaskListWidget(HouseholdTaskList("Home", getDummyTaskList(), color: Colors.blue), false);
   }
 }

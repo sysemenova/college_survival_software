@@ -5,18 +5,17 @@ import 'householdtask.dart';
 
 // ignore: must_be_immutable
 class TaskListWidget extends StatefulWidget {
-  var tasks = [];
-  String name;
+  HouseholdTaskList householdlist;
   var showDone;
-  Color color;
 
-  TaskListWidget(this.name, this.tasks, this.showDone, {this.color: Colors.blue});
+  TaskListWidget(this.householdlist, this.showDone);
 
   @override
-  _TaskListState createState() => _TaskListState(name, tasks, showDone, barcolor: color);
+  _TaskListState createState() => _TaskListState(householdlist, showDone);
 }
 
 class _TaskListState extends State<TaskListWidget> {
+  HouseholdTaskList householdlist;
   List tasks = [];
   String name;
   var showDone;
@@ -24,7 +23,11 @@ class _TaskListState extends State<TaskListWidget> {
 
   var hide = [], show = [], lists = [];
 
-  _TaskListState(this.name, this.tasks, this.showDone, {this.barcolor: Colors.blue});
+  _TaskListState(this.householdlist, this.showDone) {
+    this.tasks = householdlist.tasks;
+    this.name = householdlist.name;
+    this.barcolor = householdlist.color;
+  }
 
   // Currently runs before each build
   void updateTasks() {
@@ -51,7 +54,7 @@ class _TaskListState extends State<TaskListWidget> {
         appBar: AppBar(
           title: Text(this.name),
           backgroundColor: barcolor,
-          actions: [
+          actions: showDone ? null : [
             IconButton(icon: Icon(Icons.check), onPressed: pushListHidden,)
           ]
         ),
@@ -104,7 +107,8 @@ class _TaskListState extends State<TaskListWidget> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => TaskListWidget(taskies.name, taskies.tasks, showDoneNew, color: taskies.color)
+            builder: (context) => TaskListWidget(taskies, showDoneNew),
+
         )
     ).then((value) => setState((){}));
   }
@@ -114,9 +118,4 @@ class _TaskListState extends State<TaskListWidget> {
     pushList(cur, true);
   }
 
-  FutureOr onGoBack (dynamic value) {
-    setState(() {
-
-    });
-  }
 }
