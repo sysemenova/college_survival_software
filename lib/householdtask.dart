@@ -19,7 +19,7 @@ class HouseholdTask {
   // task-structure
 
   /// Takes four arguments - String, String, String, bool - and assigns to
-  /// name, why, how, doneCheck. Optional parameters include: {NONE}
+  /// name, why, how, doneCheck. Optional parameters include: {none so far}
   HouseholdTask(this.name, this.why, this.how, this.doneCheck);
 
   // A cool use case of the short if statement. The => just means it's a
@@ -63,7 +63,15 @@ class _TaskWidgetState extends State<TaskWidget> {
   Widget build(BuildContext context) {
     // Only reason this exists is because I don't know how to use the
     // ListView widget well. See below.
-    var info = [task.why, task.how, task.doneCheck];
+
+    //did I have to do this? no
+    //did I want to do this? no
+    //is this first way I thought of to make sure line 74 isn't too long?
+    //unfortunately, yes
+    var wString = "Why Do I Need To Do This?";
+    var hString = "How Do I Do This?";
+
+    var info = [wString, task.why, hString, task.how, task.doneCheck];
 
     return Scaffold(
         appBar: AppBar(title: Text(task.name, style: fontTask)),
