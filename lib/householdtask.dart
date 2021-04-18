@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'globals.dart';
 
 // COLIN'S REALM : DO NOT TOUCH
 
@@ -7,11 +8,18 @@ import 'package:flutter/material.dart';
 final fontDesc = TextStyle(fontSize: 20);
 final fontTask = TextStyle(fontSize: 30);
 
+//final dateFormat = DateFormat("");
+
 /// This class holds data for the household tasks. It has no methods other than
 /// changeDone(), which flips the value of
 class HouseholdTask {
   String name, why, how;
   var doneCheck;
+  var dateCreated;
+  //var recurring;
+  // var recurringGap;
+  var dateDone = [];
+
   // Other things to probably include, but optionally:
     // Recurring
     // Date done
@@ -20,11 +28,21 @@ class HouseholdTask {
 
   /// Takes four arguments - String, String, String, bool - and assigns to
   /// name, why, how, doneCheck. Optional parameters include: {none so far}
-  HouseholdTask(this.name, this.why, this.how, this.doneCheck);
+  HouseholdTask(this.name, this.why, this.how, this.doneCheck) {
+    dateCreated = currDt;
+  }
 
   // A cool use case of the short if statement. The => just means it's a
   // one line function.
-  void changeDone() => doneCheck ? doneCheck = false : doneCheck = true;
+  void changeDone() {
+    if (doneCheck) {
+      doneCheck = false;
+      dateDone.removeLast();
+    } else {
+      doneCheck = true;
+      dateDone.add(currDt);
+    }
+  }
 }
 
 

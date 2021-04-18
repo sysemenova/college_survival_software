@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'householdtask.dart';
+import 'globals.dart';
 
 // ignore: must_be_immutable
 class TaskListWidget extends StatefulWidget {
@@ -76,6 +77,7 @@ class _TaskListState extends State<TaskListWidget> {
     return ListTile(
         title: Text(task.name),
         // How the hell does padding work lmao
+        subtitle: Text(task.dateCreated.toString()),
         trailing: Checkbox(
           value: task.doneCheck,
           onChanged: (value) {
