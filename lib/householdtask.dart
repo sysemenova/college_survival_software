@@ -146,7 +146,7 @@ class _TaskWidgetState extends State<TaskWidget> {
 
   Widget buildRowHeader(text) {
     return ListTile(
-      title: Text(text, style: fontTask)
+      title: Text(text, style: fontTask, textAlign:TextAlign.center)
     );
   }
 
