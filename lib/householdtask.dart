@@ -6,7 +6,7 @@ import 'globals.dart';
 // Play around with font as you wish - eventually we'll figure out how to make
 // font and styling universal.
 final fontDesc = TextStyle(fontSize: 20);
-final fontTask = TextStyle(fontSize: 30);
+final fontTask = TextStyle(fontSize: 24);
 
 //final dateFormat = DateFormat("");
 
@@ -110,12 +110,10 @@ class _TaskWidgetState extends State<TaskWidget> {
               //return buildRow(info[i]);
               if (i == 0 || i == 2) {
                 return buildRowHeader(info[i]);
-              } else if (i == 1 || i == 3) {
+              } else if (i != 4) {
                 return buildRowText(info[i]);
-              } else if (i == 4) {
-                return buildRowCheckbox(info[i]);
               } else {
-                return buildRowText("fuck");
+                return buildRowCheckbox(info[i]);
               }
             },
           ),
