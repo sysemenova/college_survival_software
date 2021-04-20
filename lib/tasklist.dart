@@ -74,6 +74,11 @@ class _TaskListState extends State<TaskListWidget> {
   }
 
   Widget buildRowTask(HouseholdTask task) {
+    if (showDone) {
+
+    } else {
+
+    }
     return ListTile(
         title: Text(task.name),
         // How the hell does padding work lmao

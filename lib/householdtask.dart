@@ -107,19 +107,34 @@ class _TaskWidgetState extends State<TaskWidget> {
             // Anonymous function (context, i) {} where the {} has to return
             // a list tile. I think.
             itemBuilder: (context, i) {
-              return buildRow(info[i]);
+              //return buildRow(info[i]);
+              if (i == 0 || i == 2) {
+                return buildRowHeader(info[i]);
+              } else if (i == 1 || i == 3) {
+                return buildRowText(info[i]);
+              } else if (i == 4) {
+                return buildRowCheckbox(info[i]);
+              } else {
+                return buildRowText("fuck");
+              }
             },
           ),
 
         );
   }
 
+  // if (statement) { execute1 } else { execute2 }
+  // statement ? exectue1 : execute 2;
+
+
   /// Builds a row of the ListView widget. If the information is text, makes
   /// a plan ListTile with text in it. If the information is boolean, makes a
   /// CheckboxListTile. This can be played with.
   Widget buildRow(text) {
     return text is String
-        ? ListTile(title: Text(text, style: fontDesc))
+        ? ListTile(
+          title: Text(text, style: fontDesc)
+        )
         : CheckboxListTile(
             title: Text("Done?"),
             value: text,
@@ -127,6 +142,31 @@ class _TaskWidgetState extends State<TaskWidget> {
               setState(() {
                 task.changeDone();
               });
-            });
+            }
+            );
+  }
+
+  Widget buildRowHeader(text) {
+    return ListTile(
+      title: Text(text, style: fontTask)
+    );
+  }
+
+  Widget buildRowText(text) {
+    return ListTile(
+        title: Text(text, style: fontDesc)
+    );
+  }
+
+  Widget buildRowCheckbox(val) {
+    return CheckboxListTile(
+        title: Text("Done?"),
+        value: val,
+        onChanged: (value) {
+          setState(() {
+            task.changeDone();
+          });
+        }
+    );
   }
 }
