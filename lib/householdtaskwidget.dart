@@ -2,6 +2,9 @@ import 'householdtask.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart';
 
+final fontDesc = TextStyle(fontSize: 20);
+final fontTask = TextStyle(fontSize: 24);
+
 class TaskWidget extends StatefulWidget {
   // When creating the widget, I pass in the task that it's meant to display.
   HouseholdTask task;

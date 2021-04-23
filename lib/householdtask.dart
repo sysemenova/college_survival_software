@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'globals.dart';
+import 'package:intl/intl.dart';
 
-// COLIN'S REALM : DO NOT TOUCH
 
 // Play around with font as you wish - eventually we'll figure out how to make
 // font and styling universal.
-final fontDesc = TextStyle(fontSize: 20);
-final fontTask = TextStyle(fontSize: 24);
+
+final formatter = new DateFormat('yyyy-MM-dd');
 
 //final dateFormat = DateFormat("");
 
@@ -19,6 +19,7 @@ class HouseholdTask {
   //var recurring;
   // var recurringGap;
   var dateDone = [];
+  var dateDue;
 
   // Other things to probably include, but optionally:
     // Recurring
@@ -30,6 +31,8 @@ class HouseholdTask {
   /// name, why, how, doneCheck. Optional parameters include: {none so far}
   HouseholdTask(this.name, this.why, this.how, this.doneCheck) {
     dateCreated = currDt;
+    // IT SHOULD NOT BE CURRDT BUT FOR NOW
+    dateDue = currDt;
   }
 
   // A cool use case of the short if statement. The => just means it's a
@@ -42,6 +45,20 @@ class HouseholdTask {
       doneCheck = true;
       dateDone.add(currDt);
     }
+  }
+
+  String dateString() {
+    var toret = '';
+    if (doneCheck) {
+      //var now = DateTime.now();
+      //var formatter = new DateFormat('yyyy-MM-dd');
+      //String formatted = formatter.format(now);
+      //String dd = dateDone;
+      toret = "Done: ";
+    } else {
+      toret = "Due: ";
+    }
+    return toret;
   }
 }
 
