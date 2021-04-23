@@ -20,6 +20,7 @@ class HouseholdTask {
   // var recurringGap;
   var dateDone = [];
   var dateDue;
+  var dateDo;
 
   // Other things to probably include, but optionally:
     // Recurring
@@ -33,6 +34,7 @@ class HouseholdTask {
     dateCreated = currDt;
     // IT SHOULD NOT BE CURRDT BUT FOR NOW
     dateDue = currDt;
+
   }
 
   // A cool use case of the short if statement. The => just means it's a
@@ -53,10 +55,11 @@ class HouseholdTask {
       //var now = DateTime.now();
       //var formatter = new DateFormat('yyyy-MM-dd');
       //String formatted = formatter.format(now);
-      //String dd = dateDone;
-      toret = "Done: ";
+      String dd = formatter.format(dateDone.last);
+      toret = "Done: " + dd;
     } else {
-      toret = "Due: ";
+      String dd = formatter.format(dateDue);
+      toret = "Due: " + dd;
     }
     return toret;
   }

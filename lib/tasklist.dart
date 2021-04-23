@@ -79,17 +79,11 @@ class _TaskListState extends State<TaskListWidget> {
   Widget buildRowTask(HouseholdTask task) {
     // Format the date here. If showDone, show last done date. If not,
     // show created or due date. Most likely due date but whatever.
-    if (showDone) {
-      var now = DateTime.now();
-      //var formatter = new DateFormat('yyyy-MM-dd');
-      //String formatted = formatter.format(now);
-    } else {
 
-    }
     return ListTile(
         title: Text(task.name),
         // How the hell does padding work lmao
-        subtitle: Text(task.dateCreated.toString()),
+        subtitle: Text(task.dateString()),
         trailing: Checkbox(
           value: task.doneCheck,
           onChanged: (value) {
