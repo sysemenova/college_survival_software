@@ -24,7 +24,7 @@ List getDummyTaskList () {
         'You should do this because clean counters make a bathroom much nicer.',
         'Get some paper towels and a spray spray and go ham', false),
     HouseholdTask('Clean toilet', 'Dont want nasty bathroom, now do w?e',
-        'Get yourself a scrubby scrubby and do it.', true),
+        'Get yourself a scrubby scrubby and do it.', false),
     HouseholdTask('Replace sponge', 'You know how nasty those things get?',
         'Go to the store and buy a nice new clean one', false),
     HouseholdTaskList('Task Folder',

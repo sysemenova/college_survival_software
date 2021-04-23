@@ -1,7 +1,10 @@
 import 'dart:async';
 
+//import 'package:intl/intl.dart';
+
 import 'package:flutter/material.dart';
 import 'householdtask.dart';
+import 'householdtaskwidget.dart';
 import 'globals.dart';
 
 // ignore: must_be_immutable
@@ -74,8 +77,12 @@ class _TaskListState extends State<TaskListWidget> {
   }
 
   Widget buildRowTask(HouseholdTask task) {
+    // Format the date here. If showDone, show last done date. If not,
+    // show created or due date. Most likely due date but whatever.
     if (showDone) {
-
+      var now = DateTime.now();
+      //var formatter = new DateFormat('yyyy-MM-dd');
+      //String formatted = formatter.format(now);
     } else {
 
     }
