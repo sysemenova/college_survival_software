@@ -16,37 +16,55 @@ class HouseholdTask {
   String name, why, how;
   var doneCheck;
   var dateCreated;
-  //var recurring;
-  // var recurringGap;
-  var dateDone = [];
+
+  var recurringFunc;
+
+  List<DateTime> dateDone = [];
   var dateDue;
   var dateDo;
 
-  // Other things to probably include, but optionally:
-    // Recurring
-    // Date done
-  // If you make some other things non-optional, def update us in
-  // task-structure
+
 
   /// Takes four arguments - String, String, String, bool - and assigns to
   /// name, why, how, doneCheck. Optional parameters include: {none so far}
-  HouseholdTask(this.name, this.why, this.how, this.doneCheck) {
+  HouseholdTask(this.name, this.why, this.how,
+      this.doneCheck, {Map<Symbol, dynamic> recurringArgs}) {
     dateCreated = currDt;
     // IT SHOULD NOT BE CURRDT BUT FOR NOW
+    dateDo = currDt;
     dateDue = currDt;
+
+    // If there aren't any recurring args, make the recurring function null
+    // otherwise, make the recurring function using the args
+    recurringArgs == null ?
+      recurringFunc = null :
+      recurringFunc = Function.apply(calcNext, [], recurringArgs);
 
   }
 
-  // A cool use case of the short if statement. The => just means it's a
-  // one line function.
+
   void changeDone() {
-    if (doneCheck) {
+    if (recurringFunc != null) {
+      if (doneCheck) {
+        doneCheck = false;
+      } else {
+        doneCheck = true;
+        dateDone.add(currDt);
+        dateDo = recurringFunc(dateDone);
+      }
+    } else if (doneCheck) {
       doneCheck = false;
       dateDone.removeLast();
     } else {
       doneCheck = true;
       dateDone.add(currDt);
     }
+
+    // THIS FUNCTION DOES NOT uncheck and stuff
+  }
+
+  void update() {
+    //will need to uncheck done if recurring time is coming
   }
 
   String dateString() {
@@ -58,8 +76,8 @@ class HouseholdTask {
       String dd = formatter.format(dateDone.last);
       toret = "Done: " + dd;
     } else {
-      String dd = formatter.format(dateDue);
-      toret = "Due: " + dd;
+      String dd = formatter.format(dateDo);
+      toret = "Do: " + dd;
     }
     return toret;
   }
@@ -77,3 +95,6 @@ class HouseholdTaskList {
 }
 
 
+Function calcNext({Duration every = const Duration(days: 1)}) {
+  return (List<DateTime> dates) {return dates.last.add(every);};
+}

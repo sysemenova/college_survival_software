@@ -22,7 +22,8 @@ List getDummyTaskList () {
   return [
     HouseholdTask('Clean counters',
         'You should do this because clean counters make a bathroom much nicer.',
-        'Get some paper towels and a spray spray and go ham', false),
+        'Get some paper towels and a spray spray and go ham', false,
+        recurringArgs: {Symbol("every"): Duration(days: 2)}),
     HouseholdTask('Clean toilet', 'Dont want nasty bathroom, now do w?e',
         'Get yourself a scrubby scrubby and do it.', false),
     HouseholdTask('Replace sponge', 'You know how nasty those things get?',
