@@ -37,7 +37,9 @@ class _TaskListState extends State<TaskListWidget> {
   void updateTasks() {
     hide = []; show = []; lists = [];
     for (var i in tasks) {
+
       if (i is HouseholdTask) {
+        i.update();
         if ((i.doneCheck && showDone) || (!i.doneCheck && !showDone))  {
           show.add(i);
         } else {
@@ -59,7 +61,8 @@ class _TaskListState extends State<TaskListWidget> {
           title: Text(this.name),
           backgroundColor: barcolor,
           actions: showDone ? null : [
-            IconButton(icon: Icon(Icons.check), onPressed: pushListHidden,)
+            IconButton(icon: Icon(Icons.check), onPressed: pushListHidden,),
+            IconButton(icon: Icon(Icons.calendar_today), onPressed: updateDay)
           ]
         ),
         body: ListView.builder(
@@ -124,6 +127,13 @@ class _TaskListState extends State<TaskListWidget> {
   void pushListHidden() {
     HouseholdTaskList cur = new HouseholdTaskList("Done", hide, color: barcolor);
     pushList(cur, true);
+  }
+
+  void updateDay() {
+    setState(() {
+      addToDate(Duration(days: 1));
+
+    });
   }
 
 }
