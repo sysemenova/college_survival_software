@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'globals.dart';
 
 final fontDesc = TextStyle(fontSize: 20);
-final fontTask = TextStyle(fontSize: 24);
+final fontTask = TextStyle(fontSize: 24, color: Colors.white);
 
 class TaskWidget extends StatefulWidget {
   // When creating the widget, I pass in the task that it's meant to display.
@@ -47,7 +47,7 @@ class _TaskWidgetState extends State<TaskWidget> {
       // notion document. Another constructor may be more useful.
       body: ListView.builder(
         // I do Not understand padding either.
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(30),
         itemCount: info.length,
 
         // Anonymous function (context, i) {} where the {} has to return
@@ -91,8 +91,11 @@ class _TaskWidgetState extends State<TaskWidget> {
   }
 
   Widget buildRowHeader(text) {
-    return ListTile(
-        title: Text(text, style: fontTask)
+    return Container(
+        color: Colors.blue,
+        child: ListTile(
+            title: Text(text, style: fontTask)
+        )
     );
   }
 
