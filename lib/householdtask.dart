@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 // Play around with font as you wish - eventually we'll figure out how to make
 // font and styling universal.
 
-final formatter = new DateFormat('MM-dd');
+final formatter = new DateFormat('EEE-MM-dd');
 
 //final dateFormat = DateFormat("");
 
@@ -56,6 +56,7 @@ class HouseholdTask {
         doneCheck = true;
         dateDone.add(currDt);
         dateDo = recurringFunc(dateDone, lateCount);
+        lateCount = Duration(days: 0);
       }
     } else if (doneCheck) {
       doneCheck = false;
@@ -70,7 +71,7 @@ class HouseholdTask {
 
   // Checks if task needs to be unchecked
   void update() {
-    if (recurringFunc != null && doneCheck && dateDo.isAtSameMomentAs(currDt)) {
+    if (recurringFunc != null && doneCheck && dateDo.difference(currDt).inDays == 0) {
       changeDone();
     }
 
@@ -116,6 +117,29 @@ class HouseholdTaskList {
 // date.weekday returns 1-7
 // DateTime.sunday returns 7
 Function calcNext({Duration every = const Duration(days: 1),
-                  List<int> only = const [1, 2, 3, 4, 5, 6, 7]}) {
-  return (List<DateTime> dates, Duration late) {return dates.last.add(every - late);};
+                  List<int> only = const [1, 2, 3, 4, 5, 6, 7],
+                  bool accountLate = true}) {
+  return (List<DateTime> dates, Duration late) {
+    DateTime posDate = accountLate ?
+      dates.last.add(every - late) :
+      dates.last.add(every);
+    if (only.contains(posDate.weekday)) {
+      return posDate;
+    } else {
+      int proper = 0;
+      int curday = posDate.weekday;
+
+      for (int i = 1; i <= 7; i++) {
+        if (only.contains( (curday - i) % 7 )) {
+          proper = -i;
+          break;
+        } else if (only.contains( (curday + i) % 7 )) {
+          proper = i;
+          break;
+        }
+      }
+      var toret = posDate.add(Duration(days: proper));
+      return toret;
+    }
+  };
 }
