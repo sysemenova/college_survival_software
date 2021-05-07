@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'householdtask.dart';
 import 'householdtaskwidget.dart';
 import 'globals.dart';
+import 'inputtaskwidget.dart';
 
 // ignore: must_be_immutable
 class TaskListWidget extends StatefulWidget {
@@ -65,6 +66,15 @@ class _TaskListState extends State<TaskListWidget> {
             IconButton(icon: Icon(Icons.calendar_today), onPressed: updateDay)
           ]
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => InputTaskWidget())
+            ).then((value) => setState((){}));
+          },
+          child: Icon(Icons.add),
+          backgroundColor: barcolor,
+        ),
         body: ListView.builder(
             itemCount: (show.length + lists.length),
             padding: EdgeInsets.all(17),
@@ -83,10 +93,8 @@ class _TaskListState extends State<TaskListWidget> {
     // Format the date here. If showDone, show last done date. If not,
     // show created or due date. Most likely due date but whatever.
 
-    var rowColor;
-
     return Container(
-        color: (task.dateString().startsWith("LATE"))
+        color: (task.lateCount.compareTo(Duration(days: 0)) > 0)
         ? Colors.red[100]
         : Colors.white,
         child: ListTile(
