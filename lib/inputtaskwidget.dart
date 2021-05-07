@@ -13,11 +13,30 @@ class InputTaskWidget extends StatefulWidget {
 }
 
 class _InputTaskWidgetState extends State<InputTaskWidget> {
+  TextEditingController nameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("yup")),
-      body: Center(child: Text("yup")),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(40),
+            child: TextField(
+              controller: nameController,
+              decoration: InputDecoration(
+                labelText: 'Name of Task',
+              ),
+            )
+          ),
+          RaisedButton(
+            child: Text('Test'),
+            onPressed: (){
+              Navigator.pop(context, nameController.text);},
+          )
+        ],
+      ),
     );
   }
 }

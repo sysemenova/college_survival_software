@@ -68,9 +68,7 @@ class _TaskListState extends State<TaskListWidget> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => InputTaskWidget())
-            ).then((value) => setState((){}));
+            pushInput();
           },
           child: Icon(Icons.add),
           backgroundColor: barcolor,
@@ -88,6 +86,24 @@ class _TaskListState extends State<TaskListWidget> {
               }
             }));
   }
+
+
+
+
+
+  void pushInput()async {
+    var result = await Navigator.push(
+        context, MaterialPageRoute(builder: (context) => InputTaskWidget())
+    );
+    print(result);
+    setState(() {
+
+    });
+  }
+
+
+
+
 
   Widget buildRowTask(HouseholdTask task) {
     // Format the date here. If showDone, show last done date. If not,
