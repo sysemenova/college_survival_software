@@ -83,21 +83,28 @@ class _TaskListState extends State<TaskListWidget> {
     // Format the date here. If showDone, show last done date. If not,
     // show created or due date. Most likely due date but whatever.
 
-    return ListTile(
-        title: Text(task.name),
-        // How the hell does padding work lmao
-        subtitle: Text(task.dateString()),
-        trailing: Checkbox(
-          value: task.doneCheck,
-          onChanged: (value) {
-            setState(() {
-              task.changeDone();
-            });
-          },
-        ),
-        onTap: () {
-          pushTask(task);
-        });
+    var rowColor;
+
+    return Container(
+        color: (task.dateString().startsWith("LATE"))
+        ? Colors.red[100]
+        : Colors.white,
+        child: ListTile(
+          title: Text(task.name),
+          // How the hell does padding work lmao
+          subtitle: Text(task.dateString()),
+          trailing: Checkbox(
+            value: task.doneCheck,
+            onChanged: (value) {
+              setState(() {
+                task.changeDone();
+              });
+            },
+          ),
+          onTap: () {
+            pushTask(task);
+          })
+    );
   }
 
   void pushTask(HouseholdTask task) {
