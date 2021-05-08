@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 
 final formatter = new DateFormat('EEE-MM-dd');
 
+
 //final dateFormat = DateFormat("");
 
 /// This class holds data for the household tasks. It has no methods other than
@@ -30,12 +31,14 @@ class HouseholdTask {
   /// Takes four arguments - String, String, String, bool - and assigns to
   /// name, why, how, doneCheck. Optional parameters include: {none so far}
   HouseholdTask(this.name, this.why, this.how,
-                this.doneCheck, {Map<Symbol, dynamic> recurringArgs}) {
+                this.doneCheck,
+                {Map<Symbol, dynamic> recurringArgs,
+                  DateTime doDate, DateTime due}) {
 
     dateCreated = currDt;
     // IT SHOULD NOT BE CURRDT BUT FOR NOW
-    dateDo = currDt;
-    dateDue = currDt;
+    dateDo = doDate ?? currDt;
+    dateDue = due ?? currDt;
 
     lateCount = Duration(days: 0);
 
@@ -108,6 +111,11 @@ class HouseholdTaskList {
   Color color;
 
   HouseholdTaskList(this.name, this.tasks, {this.color: Colors.blue});
+
+  void add(HouseholdTask toAdd) {
+    tasks.add(toAdd);
+  }
+
 }
 
 

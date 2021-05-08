@@ -14,26 +14,47 @@ class InputTaskWidget extends StatefulWidget {
 
 class _InputTaskWidgetState extends State<InputTaskWidget> {
   TextEditingController nameController = TextEditingController();
+  TextEditingController whyController = TextEditingController();
+  TextEditingController howController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("yup")),
+      appBar: AppBar(title: Text("Input a Task")),
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.all(40),
+            padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
             child: TextField(
               controller: nameController,
               decoration: InputDecoration(
-                labelText: 'Name of Task',
+                labelText: 'Name of Household Task',
               ),
             )
           ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+            child: TextField(
+              controller: whyController,
+              decoration: InputDecoration(
+                labelText: 'Why is this important?',
+              ),
+            )
+          ),
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+              child: TextField(
+                controller: howController,
+                decoration: InputDecoration(
+                  labelText: 'How are you going to do this?',
+                ),
+              )
+          ),
           RaisedButton(
-            child: Text('Test'),
+            child: Text('Submit'),
             onPressed: (){
-              Navigator.pop(context, nameController.text);},
+              var toret = HouseholdTask(nameController.text, whyController.text, howController.text, false);
+              Navigator.pop(context, toret);},
           )
         ],
       ),

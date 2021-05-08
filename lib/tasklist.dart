@@ -97,7 +97,9 @@ class _TaskListState extends State<TaskListWidget> {
     );
     print(result);
     setState(() {
-
+      if (result is HouseholdTask) {
+        householdlist.add(result);
+      }
     });
   }
 
