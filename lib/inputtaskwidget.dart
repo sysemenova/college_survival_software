@@ -21,7 +21,7 @@ class _InputTaskWidgetState extends State<InputTaskWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Input a Task")),
-      body: Column(
+      body: ListView(
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
@@ -54,6 +54,7 @@ class _InputTaskWidgetState extends State<InputTaskWidget> {
             child: Text('Submit'),
             onPressed: (){
               var toret = HouseholdTask(nameController.text, whyController.text, howController.text, false);
+              toret = toret.checkEmpty() ? null : toret;
               Navigator.pop(context, toret);},
           )
         ],

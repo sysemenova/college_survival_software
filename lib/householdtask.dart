@@ -50,6 +50,11 @@ class HouseholdTask {
 
   }
 
+  bool checkEmpty() {
+    print(this.name == "" && this.why == "" && this.how == "");
+    return (this.name == "" && this.why == "" && this.how == "");
+  }
+
 
   void changeDone() {
     if (recurringFunc != null) {
