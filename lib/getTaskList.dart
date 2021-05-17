@@ -50,6 +50,36 @@ List getTaskList () {
         'Wash your clothes depending on usage - weekly is fairly good. Learn to use the machines near you (most are coin-operated).'
             'Separate loads by lights/darks, wash at different temperatures: Darks on cold, lights on warm', false,
         recurringArgs: {Symbol("every"): Duration(days: 7)}),
+    HouseholdTask('Change your sheets',
+        'As we sleep, our sheets accumulate dead skin cells and mites. Sheets can also accumulate pollen, animal dander, fungi, and bacteria, '
+            'as well as our sweat. Basically, there’s a lot of stuff that shows up in our sheets over time that we don’t want to sleep in.',
+        'Wash your sheets at least every other week (if you sweat a lot, consider washing every week). Wash sheets and other bedding in hot water '
+            '(if sheets instruct you to wash in cold water, try ironing them after to kill off mites without prolonging exposure to heat).'
+            'Between washes, make sure you: avoid taking a nap after a sweaty workout, keep pets off the bed, remove debris from socks and/or feet.', false,
+        recurringArgs: {Symbol("every"): Duration(days: 7)}),
+    HouseholdTask('Wipe down surfaces',
+        'Dust on surfaces is bad for aesthetic reasons - it makes everything look worse. However, the main reason is that all the dust on your '
+            'surfaces rarely stays on your surfaces. And unless you remove the dust with a cloth or something similar, its next destination is '
+            'your lungs. As for objects on surfaces such as shelves, it’s good to take stock of what’s up there every so often so you don’t '
+            'spend an hour looking for something the next time you need it.',
+        'Grab a microfiber cloth, and start removing dust from your surfaces. Dust from the top down, as while the cloth should trap most of the dust,'
+            ' any dust it displaces up top will fall down, and you’ll be able to get it when you dust the lower surfaces. Dampen the cloth before '
+            'you start, or spray it with an all-purpose cleaner. Use a dry cloth to dust things like art pieces/collectibles/etc that can’t get wet'
+            'For ceilings and such, you might need something with a longer handle.', false,
+        recurringArgs: {Symbol("every"): Duration(days: 7)}),
+    HouseholdTask('Sweep the room',
+        'Remove debris and other things that accumulate on hard floors.',
+        'Get a broom, and in a simple mechanical fashion, push it along the floor. Always push in the same direction (either away from you or towards '
+            'you) and try to gather all of the floor’s debris in one place. Then, grab a dustpan and sweep all of the debris into the dustpan. '
+            'This will take a couple tries. If there’s a line left behind, position the dustpan’s edge perpendicular to the line of debris and '
+            'keep trying to get it into the dustpan.', false,
+        recurringArgs: {Symbol("every"): Duration(days: 7)}),
+    HouseholdTask('Clean bathroom surfaces',
+        'Mold and other dirt can grow on bathroom surfaces if they are not properly cleaned. Prevent illness and infection from spreading through '
+            'the bacteria. Stay safe - puddles and a cluttered space can lead to injuries',
+        'Clean surfaces (bathtub, sink, toilet, floor, etc) with disinfectant/bleach. Wipe up any puddles. Vacuum bath mat. Clean shower curtains '
+            'and shower mat.', false,
+        recurringArgs: {Symbol("every"): Duration(days: 7)}),
     HouseholdTaskList('Task Folder',
         [
           HouseholdTask('Another task', 'You thought youd seen the last of me', 'not at all!', false),
