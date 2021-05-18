@@ -76,6 +76,7 @@ class _TaskListState extends State<TaskListWidget> {
         body: ListView.builder(
             itemCount: (show.length + lists.length),
             padding: EdgeInsets.all(17),
+            //physics: AlwaysScrollableScrollPhysics(),
             itemBuilder: (context, i) {
               if (i < show.length) {
                 var cur = show[i];

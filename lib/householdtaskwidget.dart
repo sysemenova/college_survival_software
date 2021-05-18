@@ -38,6 +38,7 @@ class _TaskWidgetState extends State<TaskWidget> {
     var hString = "How Do I Do This?";
 
     var info = [wString, task.why, hString, task.how, task.doneCheck];
+    ScrollController control = new ScrollController();
 
     return Scaffold(
       appBar: AppBar(
@@ -52,6 +53,8 @@ class _TaskWidgetState extends State<TaskWidget> {
       // notion document. Another constructor may be more useful.
       body: ListView.builder(
         // I do Not understand padding either.
+        //controller: control,
+        //physics: const AlwaysScrollableScrollPhysics(),
         padding: EdgeInsets.all(30),
         itemCount: info.length,
 
