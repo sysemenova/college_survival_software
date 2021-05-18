@@ -135,7 +135,7 @@ class _TaskListState extends State<TaskListWidget> {
 
   void pushTask(HouseholdTask task) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => TaskWidget(task))
+        context, MaterialPageRoute(builder: (context) => TaskWidget(task, taskcolor: barcolor,))
     ).then((value) => setState((){}));
   }
 

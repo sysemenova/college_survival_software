@@ -8,18 +8,20 @@ final fontTask = TextStyle(fontSize: 24, color: Colors.white);
 class TaskWidget extends StatefulWidget {
   // When creating the widget, I pass in the task that it's meant to display.
   HouseholdTask task;
-  TaskWidget(this.task);
+  Color taskcolor;
+  TaskWidget(this.task, {Color this.taskcolor = Colors.blue});
 
   // Here, that task gets passed into the state class, which is the only
   // place you should be working in.
   @override
-  _TaskWidgetState createState() => _TaskWidgetState(task);
+  _TaskWidgetState createState() => _TaskWidgetState(task, taskcolor);
 }
 
 class _TaskWidgetState extends State<TaskWidget> {
   // This receives the data that's passed in when instantiating the widget.
   HouseholdTask task;
-  _TaskWidgetState(this.task);
+  Color taskcolor;
+  _TaskWidgetState(this.task, this.taskcolor);
 
   // build() will pass back a scaffold widget, which will have everything
   // inside. Important place to play!!
@@ -38,7 +40,10 @@ class _TaskWidgetState extends State<TaskWidget> {
     var info = [wString, task.why, hString, task.how, task.doneCheck];
 
     return Scaffold(
-      appBar: AppBar(title: Text(task.name, style: fontTask)),
+      appBar: AppBar(
+        title: Text(task.name, style: fontTask),
+        backgroundColor: taskcolor,
+      ),
 
       // IMPORTANT: ListView is your friend because you can scroll in it,
       // but he's also somewhat a mystery. I only understand how to use the
@@ -92,7 +97,7 @@ class _TaskWidgetState extends State<TaskWidget> {
 
   Widget buildRowHeader(text) {
     return Container(
-        color: Colors.blue,
+        color: taskcolor,
         child: ListTile(
             title: Text(text, style: fontTask)
         )
