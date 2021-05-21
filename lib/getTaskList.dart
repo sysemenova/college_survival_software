@@ -120,7 +120,8 @@ List getDummyTaskList () {
         'Bugs and other unwanted pests will come to your room if you leave the trash full for too long. An unpleasant smell may also fill your room.',
         'Take the current bag out to the trash. Replace with a new bag.', false,
         recurringArgs: {Symbol("every"): Duration(days: 3)}),
-    HouseholdTask('Do laundry',
+    HouseholdTaskList("Weekly",
+    [HouseholdTask('Do laundry',
         'First, proof by duh: you need clean clothes. Having clean clothes is good for the people around you - prevent strange odors. '
             'Having clean clothes is good for you - (health effects of wearing dirty clothes)',
         'Wash your clothes depending on usage - weekly is fairly good. Learn to use the machines near you (most are coin-operated).'
@@ -155,11 +156,11 @@ List getDummyTaskList () {
             'the bacteria. Stay safe - puddles and a cluttered space can lead to injuries',
         'Clean surfaces (bathtub, sink, toilet, floor, etc) with disinfectant/bleach. Wipe up any puddles. Vacuum bath mat. Clean shower curtains '
             'and shower mat.', false,
-        recurringArgs: {Symbol("every"): Duration(days: 7)}),
+        recurringArgs: {Symbol("every"): Duration(days: 7)}),], color: Colors.purple),
     HouseholdTaskList('Task Folder',
         [
-          HouseholdTask('Another task', 'You thought youd seen the last of me', 'not at all!', false),
-          HouseholdTask('Yet another??', 'haha', 'Im here', false)
+          HouseholdTask('Proof of concept', 'You can make as many tasks as you please!', 'Yup!', false),
+          HouseholdTask('So many tasks!', 'You can add many many!', 'Super many!', false)
         ], color: Colors.red)
   ];
 }

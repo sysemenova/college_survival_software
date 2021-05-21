@@ -94,7 +94,7 @@ class _TaskListState extends State<TaskListWidget> {
 
   void pushInput()async {
     var result = await Navigator.push(
-        context, MaterialPageRoute(builder: (context) => InputTaskWidget())
+        context, MaterialPageRoute(builder: (context) => InputTaskWidget(barcolor: barcolor))
     );
     print(result);
     setState(() {
@@ -162,6 +162,7 @@ class _TaskListState extends State<TaskListWidget> {
     HouseholdTaskList cur = new HouseholdTaskList("Done", hide, color: barcolor);
     pushList(cur, true);
   }
+
 
   void updateDay() {
     setState(() {

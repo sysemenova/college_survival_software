@@ -8,8 +8,12 @@ import 'householdtaskwidget.dart';
 import 'globals.dart';
 
 class InputTaskWidget extends StatefulWidget {
+  Color barcolor;
+
+  InputTaskWidget({Color this.barcolor = Colors.blue});
+
   @override
-  _InputTaskWidgetState createState() => _InputTaskWidgetState();
+  _InputTaskWidgetState createState() => _InputTaskWidgetState(barcolor);
 }
 
 class _InputTaskWidgetState extends State<InputTaskWidget> {
@@ -20,12 +24,16 @@ class _InputTaskWidgetState extends State<InputTaskWidget> {
   List<String> options = ['none', 'days', 'weeks'];
   var dropdownValue = 'none';
 
+  Color barcolor;
+
+  _InputTaskWidgetState(this.barcolor);
+
   @override
   Widget build(BuildContext context) {
 
 
     return Scaffold(
-      appBar: AppBar(title: Text("Input a Task")),
+      appBar: AppBar(title: Text("Input a Task"), backgroundColor: barcolor,),
       body: ListView(
         children: [
           Padding(
